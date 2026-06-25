@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Simulasi Model Ising 2D</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            width: 90%;
+            background-color: #252538;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        h1 {
+            color: #f5c2e7;
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+        p.subtitle {
+            color: #a6adc8;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+        .grid-links {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .card-link {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            background-color: #313244;
+            padding: 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #cdd6f4;
+            border-left: 5px solid #89b4fa;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .card-link:hover {
+            transform: translateX(5px);
+            background-color: #45475a;
+        }
+        .card-link.case1 { border-left-color: #a6e3a1; }
+        .card-link.case2 { border-left-color: #f9e2af; }
+        .card-link.case3 { border-left-color: #f38ba8; }
+        
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .card-desc {
+            font-size: 0.9rem;
+            color: #bac2de;
+            text-align: left;
+        }
+        footer {
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: #6c7086;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Simulasi Model Ising 2D</h1>
+    <p class="subtitle">Studi Kasus Sifat Termodinamika & Transisi Fase via Algoritma Metropolis</p>
+    
+    <div class="grid-links">
+        <a href="case_1_Fase_Feromagnetik_(T=1.0).html" class="card-link case1">
+            <div class="card-title">Studi Kasus 1: Fase Feromagnetik (T = 1.0)</div>
+            <div class="card-desc">Analisis sistem di bawah suhu kritis. Mengamati orientasi spin searah secara spontan dan nilai |M| ≈ 1.</div>
+        </a>
+        
+        <a href="case_2_Transisi_Fasa_dan_Kritikalitas(T=2.27).html" class="card-link case2">
+            <div class="card-title">Studi Kasus 2: Transisi Fase & Kritikalitas (T = 2.27)</div>
+            <div class="card-desc">Analisis tepat pada suhu kritis Onsager. Mengamati fluktuasi ekstrem dan pembentukan kluster fraktal.</div>
+        </a>
+        
+        <a href="case_3_Fase_Paramagnetik_(T=4.0).html" class="card-link case3">
+            <div class="card-title">Studi Kasus 3: Fase Paramagnetik (T = 4.0)</div>
+            <div class="card-desc">Analisis sistem pada suhu tinggi. Mengamati kehancuran domain magnetik akibat efek termal dan nilai M ≈ 0.</div>
+        </a>
+    </div>
+
+    <footer>
+        <p>Dikembangkan untuk Tugas Kelompok Komputasi Fisika — 2026</p>
+    </footer>
+</div>
+
+</body>
+</html>
