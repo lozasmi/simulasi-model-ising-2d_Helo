@@ -1,24 +1,20 @@
 # =====================================================================
-# TUGAS SIMULASI MODEL ISING 2D - METODE MONTE CARLO METROPOLIS
-# Sesuai dengan Panduan Modul Komputasi (Agus Rifani)
+# SYSTEM SIMULATION CODE: 2D ISING MODEL
 # =====================================================================
-
-# 1. MENGIMPOR PUSTAKA (LIBRARIES)
 import numpy as np
 import matplotlib.pyplot as plt
 import random
 
-# Mengatur gaya plot agar rapi, akademis, dan estetik
+# Apply professional academic plotting style
 plt.style.use('seaborn-v0_8-darkgrid')
 
-
-# 2. FUNGSI LANGKAH METROPOLIS (Perhitungan Delta E Efisien)
 def metropolis_step(grid, T):
+    """Executes a single trial flip attempt using the Metropolis algorithm."""
     N = grid.shape[0]
-    # Memilih koordinat spin secara acak (Hot Start / Random)
+    # Step 2: Randomly select a spin coordinate
     x, y = random.randint(0, N-1), random.randint(0, N-1)
     
-    # Menghitung jumlah 4 spin tetangga dengan Kondisi Batas Periodik (%)
+    # Calculate the sum of 4 nearest neighbors with Periodic Boundary Conditions (%)
     s_neighbors = (
         grid[(x+1)%N, y] +
         grid[(x-1)%N, y] +
@@ -26,56 +22,63 @@ def metropolis_step(grid, T):
         grid[x, (y-1)%N]
     )
     
-    # Perubahan energi lokal jika spin di (x,y) dibalik: Delta E = 2 * s_i * sum(s_j)
+    # Step 3: Compute the local energy change
     delta_E = 2 * grid[x, y] * s_neighbors
     
-    # Kriteria Penerimaan Metropolis
+    # Step 4: Evaluate the Metropolis Criterion
     if delta_E <= 0 or random.random() < np.exp(-delta_E / T):
-        grid[x, y] *= -1  # Terima pembalikan spin
+        grid[x, y] *= -1  # Accept the spin flip
         
     return grid
 
-
-# 3. FUNGSI SIMULASI UTAMA (Monte Carlo Loop)
 def run_simulation(N=20, temp=1.0, n_steps=200000):
-    # Inisialisasi Kisi dengan Hot Start (Acak antara -1 dan 1)
+    """Runs the full Monte Carlo simulation starting from a disordered Hot Start."""
+    # Step 1: Initialize system with a Hot Start configuration
     grid = np.random.choice([-1, 1], size=(N, N))
     magnetization_history = []
     
     for step in range(n_steps):
         grid = metropolis_step(grid, temp)
         
-        # Hitung magnetisasi rata-rata setiap 100 langkah
+        # Sample average magnetization data every 100 steps for efficiency
         if step % 100 == 0:
             magnetization = np.mean(grid)
             magnetization_history.append(magnetization)
             
     return grid, magnetization_history
 
+# --- Main Simulation Execution and Visual Grid Setup ---
+if __name__ == "__main__":
+    GRID_SIZE = 20
+    MONTE_CARLO_STEPS = 200000
+    temperatures = [1.0, 2.27, 4.0]
 
-# 4. BLOK EKSEKUSI UTAMA DAN MULTI-PLOT (Sesuai Halaman 11-12 PDF)
-# Menetapkan parameter dasar sesuai instruksi tugas
-N_SIZE = 20
-STEPS = 200000
-temperatures = [1.0, 2.27, 4.0]
+    # Create a 2x3 subplot matrix for the three case studies
+    fig, axes = plt.subplots(2, len(temperatures), figsize=(15, 10))
+    fig.suptitle("2D Ising Model Simulation: Thermal Phase Transitions", fontsize=16, fontweight='bold')
 
-# Membuat jendela plot: kisi berukuran 2 baris x 3 kolom
-fig, axes = plt.subplots(2, 3, figsize=(15, 10))
-fig.suptitle("Simulasi Model Ising 2D: Analisis Tiga Studi Kasus Termodinamika", fontsize=16, fontweight='bold')
+    for i, T in enumerate(temperatures):
+        print(f"Running simulation for Case T = {T}...")
+        final_grid, M_history = run_simulation(N=GRID_SIZE, temp=T, n_steps=MONTE_CARLO_STEPS)
+        
+        # Row 1: Visual Spatial Grid Configurations
+        ax_grid = axes[0, i]
+        ax_grid.imshow(final_grid, cmap='binary', vmin=-1, vmax=1)
+        ax_grid.set_title(f"Final Grid Configuration (T = {T})", fontsize=12, fontweight='bold')
+        ax_grid.axis('off')
+        
+        # Row 2: Average Magnetization Progress Curves
+        ax_mag = axes[1, i]
+        ax_mag.plot(M_history, color='teal', alpha=0.8, linewidth=1.2)
+        ax_mag.axhline(1.0, color='red', linestyle='--', alpha=0.5)
+        ax_mag.axhline(0.0, color='black', linestyle=':', alpha=0.5)
+        ax_mag.axhline(-1.0, color='red', linestyle='--', alpha=0.5)
+        
+        ax_mag.set_title(f"Magnetization History (T = {T})", fontsize=12)
+        ax_mag.set_xlabel("Monte Carlo Steps (x100)")
+        ax_mag.set_ylabel("Average Magnetization (M)")
+        ax_mag.set_ylim(-1.1, 1.1)
+        ax_mag.grid(True, linestyle='--', alpha=0.5)
 
-# Loop untuk menjalankan ketiga studi kasus suhu secara otomatis
-for i, T in enumerate(temperatures):
-    print(f"Sedang menjalankan simulasi untuk T = {T}... Mohon tunggu sebentar.")
-    final_grid, M_history = run_simulation(N=N_SIZE, temp=T, n_steps=STEPS)
-    
-    # --- BARIS 1: Visualisasi Keadaan Akhir Kisi Spin ---
-    ax_grid = axes[0, i]
-    # Menampilkan kisi dengan peta warna biner hitam-putih (cmap='binary')
-    ax_grid.imshow(final_grid, cmap='binary', vmin=-1, vmax=1)
-    ax_grid.set_title(f"Kisi Akhir (T = {T})", fontsize=12, fontweight='bold')
-    ax_grid.axis('off')  # Menghilangkan sumbu koordinat agar fokus ke pola kisi
-    
-    # --- BARIS 2: Visualisasi Riwayat Magnetisasi ---
-    ax_mag = axes[1, i]
-    ax_mag.plot(M_history, color='teal', alpha=0.8, linewidth=1.2, label='Magnetisasi (M)')
-    # Men
+    plt.tight_layout(rect=[0, 0, 1, 0.95])
+    plt.show()
