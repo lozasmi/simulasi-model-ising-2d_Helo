@@ -21,10 +21,10 @@ Untuk setiap studi kasus di atas, wajib untuk:
 Penyusunan parameter simulasi, formulasi algoritma, serta validasi analisis fisis dalam proyek ini didasarkan pada referensi berikut:
 * **Landau, D. P., & Binder, K.** *A Guide to Monte Carlo Simulations in Statistical Physics* (Bab 17.2: Aturan Implementasi). Cambridge University Press.
 * **Rifani, Agus.** *Modul Pembelajaran: Simulasi Model Magnet dan Transisi Fasa*. Laboratorium Fisika Komputasi.
-### Penggunaan AI (*Artificial Intelligence*)
+### Penggunaan AI 
 Pada pengerjaan proyek *case-based* simulasi Model Ising 2D ini, kami memanfaatkan teknologi *Large Language Model* (LLM) sebagai alat bantu, yaitu:
-* **Gemini 3.1 Pro (Google):** Digunakan untuk membantu optimasi sintaksis algoritma Metropolis pada potongan kode simulasi demi efisiensi perhitungan energi lokal, memberikan saran implementasi kode yang bersih, serta membantu pemformatan penulisan rumus fisika ke dalam standar Latex.
-* **Claude Sonnet 4.6 (Anthropic):** Digunakan secara komplementer untuk memvalidasi konsep fisika tingkat lanjut pada Model Ising seperti fenomena transisi fase, patah simetri spontan, penurunan persamaan energi lokal, serta membantu penataan komponen dokumen Markdown agar tersusun secara sistematis.
+* **Gemini 3.1 Pro:** Digunakan untuk memberikan masukan pada beberapa bagian implementasi kode algoritma Metropolis serta membantu pemformatan rumus fisika ke dalam standar LaTeX.
+* **Claude Sonnet 4.6:** Digunakan untuk memvalidasi konsep fisika Model Ising, seperti transisi fase dan persamaan energi lokal, serta membantu penataan komponen dokumen Markdown agar lebih sistematis.
 ### Perangkat Lunak dan Lingkungan Komputasi
 Proses perancangan kode, eksekusi simulasi Model Ising 2D, hingga penyusunan laporan akhir memanfaatkan ekosistem perangkat lunak dan lingkungan komputasi berikut:
 * **Visual Studio Code (VS Code):** Digunakan sebagai editor utama untuk menulis, mengedit, dan menjalankan program Python, serta mempermudah proses *debugging* logika simulasi.
