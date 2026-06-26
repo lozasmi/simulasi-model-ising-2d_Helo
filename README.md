@@ -23,7 +23,7 @@ Penyusunan parameter simulasi, formulasi algoritma, serta validasi analisis fisi
 * **Rifani, Agus.** *Modul Pembelajaran: Simulasi Model Magnet dan Transisi Fasa*. Laboratorium Fisika Komputasi.
 ### Penggunaan AI (*Artificial Intelligence*)
 Pada pengerjaan proyek *case-based* simulasi Model Ising 2D ini, kami memanfaatkan teknologi *Large Language Model* (LLM) sebagai alat bantu, yaitu:
-* **Gemini 3.1 Pro (Google):** Digunakan untuk membantu optimasi sintaksis algoritma Metropolis pada potongan kode simulasi demi efisiensi perhitungan energi lokal, memberikan saran implementasi kode yang bersih, serta membantu pemformatan penulisan rumus fisika ke dalam standar $\LaTeX$.
+* **Gemini 3.1 Pro (Google):** Digunakan untuk membantu optimasi sintaksis algoritma Metropolis pada potongan kode simulasi demi efisiensi perhitungan energi lokal, memberikan saran implementasi kode yang bersih, serta membantu pemformatan penulisan rumus fisika ke dalam standar Latex.
 * **Claude Sonnet 4.6 (Anthropic):** Digunakan secara komplementer untuk memvalidasi konsep fisika tingkat lanjut pada Model Ising seperti fenomena transisi fase, patah simetri spontan, penurunan persamaan energi lokal, serta membantu penataan komponen dokumen Markdown agar tersusun secara sistematis.
 ### Perangkat Lunak dan Lingkungan Komputasi
 Proses perancangan kode, eksekusi simulasi Model Ising 2D, hingga penyusunan laporan akhir memanfaatkan ekosistem perangkat lunak dan lingkungan komputasi berikut:
